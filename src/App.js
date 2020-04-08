@@ -12,18 +12,22 @@ const url=" https://covid19.mathdro.id/api"
 
 class App extends Component {
   
+  state={
+    data:{}
+  }
+
   async componentDidMount(){
 
     const data = await getData();
 
-    console.log(data)
+    this.setState({data:data})
   }
   
   
   render() {
     return (
       <div className={styles.container}>
-        <Cards/>
+        <Cards data={this.state.data}/>
         <Country/>
         <Chart/>
       </div>

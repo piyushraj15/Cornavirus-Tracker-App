@@ -1,9 +1,66 @@
 import React from 'react'
 
-const Cards=()=>{
+import { Card, CardContent, Typography, Grid } from '@material-ui/core';
+
+import styles from './Cards.module.css'
+
+import CountUp from 'react-countup'
+
+const Cards = ({data:{confirmed, recovered, deaths, lastUpdate}}) => {
+        console.log(confirmed)
+    if(!confirmed){
+        return "Loading..."
+    }
+    else{
     return (
-        <h1>Card</h1>
+        <div className={styles.container}>
+        <Grid container spacing={3} justify="center">
+            <Grid item component={Card}>
+                <CardContent>
+                    <Typography color="textSecondary" gutterBottom>Infected</Typography>
+                    <Typography varient="h5">
+                        <CountUp start={0}
+                        end={confirmed.value}
+                        duration={2.5}
+                        separator=","
+                        />
+                    </Typography>
+                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                    <Typography varient="body2">Number of active cases of COVID-12</Typography>
+                </CardContent>
+            </Grid>
+            <Grid item component={Card}>
+                <CardContent>
+                    <Typography color="textSecondary" gutterBottom>Recovered</Typography>
+                    <Typography varient="h5">
+                    <CountUp start={0}
+                        end={recovered.value}
+                        duration={2.5}
+                        separator=","
+                        />
+                    </Typography>
+                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                    <Typography varient="body2">Number of Recovered cases of COVID-12</Typography>
+                </CardContent>
+            </Grid>
+            <Grid item component={Card}>
+                <CardContent>
+                    <Typography color="textSecondary" gutterBottom>Death</Typography>
+                    <Typography varient="h5">
+                    <CountUp start={0}
+                        end={deaths.value}
+                        duration={2.5}
+                        separator=","
+                        />
+                    </Typography>
+                    <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                    <Typography varient="body2">Number of Death cases of COVID-12</Typography>
+                </CardContent>
+            </Grid>
+        </Grid>
+        </div>
     )
+    }
 }
 
 export default Cards
