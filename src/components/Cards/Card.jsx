@@ -7,11 +7,13 @@ import cx from 'classnames'
 import CountUp from 'react-countup'
 
 const Cards = ({data:{confirmed, recovered, deaths, lastUpdate}}) => {
+
         
     if(!confirmed){
         return "Loading..."
     }
     else{
+    console.log(confirmed.value)
     return (
         <div className={styles.container}>
         <Grid container spacing={3} justify="center">

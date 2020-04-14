@@ -13,7 +13,8 @@ const url=" https://covid19.mathdro.id/api"
 class App extends Component {
   
   state={
-    data:{}
+    data:{},
+    country:""
   }
 
   async componentDidMount(){
@@ -22,14 +23,21 @@ class App extends Component {
 
     this.setState({data:data})
   }
+
+   handleCountryChange=async(country)=>{
+    console.log(country)  
+    const fetchedData= await getData(country);
+    console.log(fetchedData)
+    this.setState({data:fetchedData,country:country});
+  }
   
   
   render() {
     return (
       <div className={styles.container}>
         <Cards data={this.state.data}/>
-        <Country/>
-        <Chart/>
+        <Country handleCountryChange={this.handleCountryChange}/>
+        <Chart data={this.state.data} country={this.state.country}/>
       </div>
     )
   }
